@@ -13,17 +13,6 @@ module.exports = {
     'plugin:@typescript-eslint/recommended',
     'eslint-config-prettier',
   ],
-  overrides: [
-    {
-        files: ['vite.config.ts'],
-        parser: '@typescript-eslint/parser',
-        parserOptions: {
-        project: './tsconfig.node.json',
-        ecmaVersion: 'latest',
-        sourceType: 'module'
-      },
-    }
-  ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     project: './tsconfig.json',

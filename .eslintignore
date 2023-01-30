@@ -3,5 +3,5 @@ public
 .vscode
 coverage
 node_modules
-prettier.config.cjs
-.eslintrc.cjs
+prettier.config.js
+.eslintrc.js

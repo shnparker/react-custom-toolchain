@@ -1,54 +1,39 @@
-# react-starter-template
+# React Custom Toolchain Demo
 
-This template allows me to rapidly spin up spikes or prototypes for React SPA's in the configuration that I most prefer to work in.
+This is a demo of a custom toolchain for React projects.
 
-Since this project is based on [Vite](https://vitejs.dev/), it is suggested you read the docs to familiarise yourself with how it serves locally, runs hot reloading, bundles files, handles env variables, etc. It is also a good idea to read the docs of any other listed tools you are unfamiliar with.
+## What is this?
 
-## Tools included in this template
+The aim of this spike is to create a React SPA from scratch that mimics the functionality of [Create React App](https://create-react-app.dev/). The goal is to create a toolchain that is as easy to use as CRA, but with the flexibility to add and remove tools as needed.
 
-To learn more about the technologies used in this site template, see the following resources:
+For any React project, there are a few things that are required:
+
+1. A package manager (yarn, npm, etc)
+2. A bundler (webpack, rollup, etc)
+3. A compiler (babel, typescript, etc) - technically this is a transpiler in the case of typescript and JSX
+
+The rest is optional, but the configuration of this toolchain must support the following:
+
+* A web server
+* Separate development and production builds
+* Hot reloading
+* Code splitting
+* Minification
+* CSS and other assets such as images
+* TypeScript
+* Jest as a test runner
+* Environment variables
+* PostCSS
+* Custom path aliases
+* A public folder
+
+## General project scaffolding
+
+To keep the project simple and clean, I've used the following general tools that do not influence the 
+toolchain, but the project as a whole. Tailwind is just here to test if PostCSS works.
 
 **Project Scaffolding**
-- [TypeScript](https://www.typescriptlang.org/) - I don't know how people write plain JS anymore
 - [ESLint](https://eslint.org/) - Enforcement of coding rules
 - [Prettier](https://prettier.io/) - Autoformatting code
 - [Husky + Lint Staged](https://prettier.io/docs/en/precommit.html) - Precommit hooks for ESLint & Prettier
-- [Vite](https://vitejs.dev/) - Next Generation Frontend Tooling Framework
-
-**Frontend Libraries**
-- [Heroicons](https://heroicons.com/) - Icon library from TailwindLabs
-- [Tailwind CSS](https://tailwindcss.com) - The official Tailwind CSS documentation
-- [Headless UI](https://headlessui.dev) - The official Headless UI documentation
-- [React Query](https://tanstack.com/query/latest/docs/react/overview) - Amazing data fetching library based on hooks
-- [Formik](https://formik.org/) - Easy React Form Handling
-
-**Testing**
-- [Vitest](https://vitest.dev/) - New testing framework based on Vite
-- [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/) - The best testing library there is
-
-## Getting started
-
-Install dependencies
-
-```bash
-yarn
-```
-
-Next, create a `.env.local` file in the root of your project and set the `VITE_APP_` variable to your site's public URL:
-
-```bash
-VITE_APP_API_URL
-```
-
-Next, run the development server:
-
-```bash
-yarn dev
-```
-
-Finally, open [http://localhost:3000](http://localhost:3000) in your browser to view the website.
-
-## Customizing
-
-You can start editing this site by modifying the files in the `/src` folder. The site will auto-update as you edit these files.
-
+- [TailwindCSS](https://tailwindcss.com/) - Utility-first CSS framework
