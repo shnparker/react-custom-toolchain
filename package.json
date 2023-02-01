@@ -1,7 +1,7 @@
 {
   "name": "react-custom-toolchain-demo",
   "version": "1.0.0",
-  "type": "module",
+  "license": "MIT",
   "scripts": {
     "lint": "eslint . --ext .ts,.tsx,.js,.jsx --fix",
     "format": "prettier --write . --loglevel warn",
