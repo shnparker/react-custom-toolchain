@@ -2,7 +2,7 @@ module.exports = {
   env: {
     browser: true,
     es2021: true,
-    jest: true
+    jest: true,
   },
   extends: [
     'eslint:recommended',
@@ -10,7 +10,7 @@ module.exports = {
     'plugin:import/recommended',
     'plugin:import/typescript',
     'plugin:jsx-a11y/recommended',
-    "plugin:promise/recommended",
+    'plugin:promise/recommended',
     'plugin:@typescript-eslint/recommended',
     'eslint-config-prettier',
   ],
@@ -18,7 +18,7 @@ module.exports = {
   parserOptions: {
     project: './tsconfig.json',
     ecmaVersion: 'latest',
-    sourceType: 'module'
+    sourceType: 'module',
   },
   settings: {
     react: {
@@ -29,14 +29,12 @@ module.exports = {
         paths: ['src'],
         extensions: ['.js', '.jsx', '.ts', '.tsx'],
       },
-      'alias': {
-        'extensions': ['.js', '.jsx', '.ts', '.tsx'],
-        'map': [
-          ['@/*','src/*']
-        ]
+      alias: {
+        extensions: ['.js', '.jsx', '.ts', '.tsx'],
+        map: [['@/*', 'src/*']],
       },
-      typescript: true
-    }
+      typescript: true,
+    },
   },
   rules: {
     'react/react-in-jsx-scope': 'off',

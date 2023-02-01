@@ -1,7 +1,7 @@
-import React from 'react';
+import React from 'react'
 
 function App() {
-  return <div>Custom React Toolchain</div>;
+  return <div>Custom React Toolchain</div>
 }
 
-export default App;
+export default App
