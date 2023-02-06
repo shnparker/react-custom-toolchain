@@ -1,9 +1,11 @@
 const path = require('path')
+
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
   entry: path.join(__dirname, '../src', 'index.tsx'),
-  // target: ['browserslist'],
+  target: ['browserslist'],
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx'],
   },
@@ -33,6 +35,18 @@ module.exports = {
     ],
   },
   plugins: [
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: 'public/images',
+          to: `images`,
+        },
+        {
+          from: 'public/robots.txt',
+          to: `robots.txt`,
+        },
+      ],
+    }),
     new HtmlWebpackPlugin({
       template: path.join(__dirname, '../public', 'index.html'),
       scriptLoading: 'defer',

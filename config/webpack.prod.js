@@ -2,6 +2,8 @@ const { merge } = require('webpack-merge')
 const common = require('./webpack.common')
 const path = require('path')
 
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
+
 module.exports = merge(common, {
   mode: 'production',
   devtool: 'source-map',
@@ -12,14 +14,22 @@ module.exports = merge(common, {
     publicPath: '/',
     clean: true,
   },
-  rules: [
-    {
-      test: /\.(js|jsx|ts|tsx)$/,
-      exclude: /node_modules/,
-      use: {
-        loader: 'babel-loader',
+  module: {
+    rules: [
+      {
+        test: /\.(js|jsx|ts|tsx)$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+        },
       },
-    },
+    ],
+  },
+  plugins: [
+    new BundleAnalyzerPlugin({
+      analyzerMode: 'static',
+      reportFilename: path.resolve('dist', 'reports', 'bundle-report.html'),
+      openAnalyzer: false,
+    }),
   ],
-  plugins: [],
 })
