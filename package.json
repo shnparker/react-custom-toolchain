@@ -3,12 +3,14 @@
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
-    "start": "webpack serve --config config/webpack.common.js --mode development",
+    "dev": "webpack serve --open --config config/webpack.dev.js",
+    "build": "webpack --config config/webpack.prod.js",
     "lint": "eslint . --ext .ts,.tsx,.js,.jsx --fix",
     "format": "prettier --write . --loglevel warn",
     "prepare": "husky install"
   },
   "dependencies": {
+    "dotenv": "^16.0.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
@@ -50,9 +52,11 @@
     "postcss-loader": "^7.0.2",
     "prettier": "^2.8.3",
     "prettier-plugin-tailwindcss": "^0.2.2",
+    "react-refresh": "^0.14.0",
     "style-loader": "^3.3.1",
     "tailwindcss": "^3.2.4",
     "typescript": "*",
+    "url-loader": "^4.1.1",
     "webpack": "^5.75.0",
     "webpack-cli": "^5.0.1",
     "webpack-dev-server": "^4.11.1",

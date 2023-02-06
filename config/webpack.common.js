@@ -3,9 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
   entry: path.join(__dirname, '../src', 'index.tsx'),
-  output: {
-    path: path.resolve(__dirname, 'dist'),
-  },
+  // target: ['browserslist'],
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx'],
   },
@@ -16,25 +14,29 @@ module.exports = {
         use: ['@svgr/webpack'],
       },
       {
-        test: /\.(png|jp(e*)g|svg|gif)$/,
-        use: ['file-loader'],
+        test: /\.(png|svg|jpg|jpeg|gif|woff|woff2|eot|ttf|otf)$/i,
+        type: 'asset/resource',
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 8192,
+              name: 'assets/[name].[contenthash].[ext]',
+            },
+          },
+        ],
       },
       {
         test: /\.css$/i,
         use: ['style-loader', 'css-loader', 'postcss-loader'],
-      },
-      {
-        test: /\.(js|jsx|ts|tsx)$/,
-        exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader',
-        },
       },
     ],
   },
   plugins: [
     new HtmlWebpackPlugin({
       template: path.join(__dirname, '../public', 'index.html'),
+      scriptLoading: 'defer',
+      chunks: ['main'],
     }),
   ],
 }
