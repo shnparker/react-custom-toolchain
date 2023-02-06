@@ -2,6 +2,7 @@ const path = require('path')
 
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const Dotenv = require('dotenv-webpack')
 
 module.exports = {
   entry: path.join(__dirname, '../src', 'index.tsx'),
@@ -35,6 +36,13 @@ module.exports = {
     ],
   },
   plugins: [
+    new Dotenv({
+      path: path.join(__dirname, '../.env'),
+      safe: true,
+      allowEmptyValues: true,
+      systemvars: true,
+      silent: true,
+    }),
     new CopyWebpackPlugin({
       patterns: [
         {
