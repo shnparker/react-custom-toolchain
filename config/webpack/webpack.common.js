@@ -16,6 +16,9 @@ module.exports = {
   target: ['browserslist'],
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx'],
+    alias: {
+      '@': configPaths.appPath,
+    },
   },
   module: {
     rules: [
