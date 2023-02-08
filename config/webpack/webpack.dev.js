@@ -3,14 +3,17 @@ const { merge } = require('webpack-merge')
 
 const common = require('./webpack.common.js')
 
+const configPaths = require('../configPaths')
+
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin')
+const Dotenv = require('dotenv-webpack')
 
 module.exports = merge(common, {
   mode: 'development',
   devtool: 'eval-source-map',
   devServer: {
     static: {
-      directory: path.join(__dirname, 'public'),
+      directory: path.join(configPaths.outputPath),
     },
     compress: true,
     port: 3000,
@@ -20,7 +23,7 @@ module.exports = merge(common, {
     rules: [
       {
         test: /\.(js|jsx|ts|tsx)$/,
-        exclude: /node_modules/,
+        include: path.resolve(__dirname, configPaths.appPath),
         use: [
           {
             loader: require.resolve('babel-loader'),
@@ -32,5 +35,14 @@ module.exports = merge(common, {
       },
     ],
   },
-  plugins: [new ReactRefreshWebpackPlugin()],
+  plugins: [
+    new ReactRefreshWebpackPlugin(),
+    new Dotenv({
+      path: path.join(__dirname, `../../.env.local`),
+      safe: true,
+      allowEmptyValues: true,
+      systemvars: true,
+      silent: true,
+    }),
+  ],
 })

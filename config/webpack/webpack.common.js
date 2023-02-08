@@ -2,10 +2,17 @@ const path = require('path')
 
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const Dotenv = require('dotenv-webpack')
+const configPaths = require('../configPaths')
 
 module.exports = {
-  entry: path.join(__dirname, '../src', 'index.tsx'),
+  entry: path.join(configPaths.appPath, 'index.tsx'),
+  output: {
+    filename: '[name].[contenthash].js',
+    chunkFilename: '[name].[contenthash].bundle.js',
+    path: path.resolve(configPaths.outputPath),
+    publicPath: '/',
+    clean: true,
+  },
   target: ['browserslist'],
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx'],
@@ -14,49 +21,36 @@ module.exports = {
     rules: [
       {
         test: /\.svg$/,
+        include: path.resolve(__dirname, configPaths.appPath),
         use: ['@svgr/webpack'],
       },
       {
         test: /\.(png|svg|jpg|jpeg|gif|woff|woff2|eot|ttf|otf)$/i,
         type: 'asset/resource',
-        use: [
-          {
-            loader: 'url-loader',
-            options: {
-              limit: 8192,
-              name: 'assets/[name].[contenthash].[ext]',
-            },
-          },
-        ],
+        include: path.resolve(__dirname, configPaths.appPath),
       },
       {
         test: /\.css$/i,
+        include: path.resolve(__dirname, configPaths.appPath),
         use: ['style-loader', 'css-loader', 'postcss-loader'],
       },
     ],
   },
   plugins: [
-    new Dotenv({
-      path: path.join(__dirname, '../.env'),
-      safe: true,
-      allowEmptyValues: true,
-      systemvars: true,
-      silent: true,
-    }),
     new CopyWebpackPlugin({
       patterns: [
         {
-          from: 'public/images',
-          to: `images`,
-        },
-        {
-          from: 'public/robots.txt',
-          to: `robots.txt`,
+          from: 'public/**/*',
+          globOptions: {
+            dot: true,
+            gitignore: true,
+            ignore: ['index.html'],
+          },
         },
       ],
     }),
     new HtmlWebpackPlugin({
-      template: path.join(__dirname, '../public', 'index.html'),
+      template: path.join(configPaths.publicPath, 'index.html'),
       scriptLoading: 'defer',
       chunks: ['main'],
     }),
