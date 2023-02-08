@@ -1,7 +1,6 @@
 const { merge } = require('webpack-merge')
 const common = require('./webpack.common')
 const path = require('path')
-const Dotenv = require('dotenv-webpack')
 const configPaths = require('../configPaths')
 
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
@@ -28,13 +27,6 @@ module.exports = merge(common, {
       analyzerMode: 'static',
       reportFilename: path.resolve('dist', 'reports', 'bundle-report.html'),
       openAnalyzer: false,
-    }),
-    new Dotenv({
-      path: path.join(`../.env.production`),
-      safe: true,
-      allowEmptyValues: true,
-      systemvars: true,
-      silent: true,
     }),
     new MiniCssExtractPlugin({
       filename: '[name].[contenthash].css',

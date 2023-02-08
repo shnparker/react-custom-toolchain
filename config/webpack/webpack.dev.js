@@ -6,7 +6,6 @@ const common = require('./webpack.common.js')
 const configPaths = require('../configPaths')
 
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin')
-const Dotenv = require('dotenv-webpack')
 
 module.exports = merge(common, {
   mode: 'development',
@@ -35,14 +34,5 @@ module.exports = merge(common, {
       },
     ],
   },
-  plugins: [
-    new ReactRefreshWebpackPlugin(),
-    new Dotenv({
-      path: path.join(__dirname, `../../.env.local`),
-      safe: true,
-      allowEmptyValues: true,
-      systemvars: true,
-      silent: true,
-    }),
-  ],
+  plugins: [new ReactRefreshWebpackPlugin()],
 })
