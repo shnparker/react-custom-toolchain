@@ -7,6 +7,8 @@ const fs = require('fs')
 const { createHash } = require('crypto')
 const dotenv = require('dotenv')
 
+const webpack = require('webpack')
+
 // Utility functions ----------------------------------------------------------
 
 createWebpackHash = (env) => {
@@ -16,103 +18,95 @@ createWebpackHash = (env) => {
   return hash.digest('hex')
 }
 
-// function parseEnvFile(name) {
-//   const file = `./.env/${name}`
-//   return fs.existsSync(file) ? dotenv.config({ path: file }).parsed : {}
-// }
+function parseEnvFile(name) {
+  const file = configPaths.envPath + '/' + name
+
+  return fs.existsSync(file) ? dotenv.config({ path: file }).parsed : {}
+}
+
+function logCurrentEnv(env) {
+  console.log('----- Current environment variables -----')
+  Object.keys(env).forEach((key) => {
+    console.log(`  ${key}: ${env[key]}`)
+  })
+  console.log('----------------------------------------')
+}
 
 // Webpack config --------------------------------------------------------------
 
-//   envFlags = webpackEnv || {}
-//
-//   const ENV = envFlags.ENV || 'production'
-//
-//   let env = {
-//     ...parseEnvFile(`.env.${ENV}`),
-//     ...envFlags,
-//   }
-//
-//   console.log(webpackEnv)
-//   console.log(env)
-//   console.log(ENV)
-//   console.log(parseEnvFile(`.env.${ENV}`))
+module.exports = (webpackEnv) => {
+  const envFlags = webpackEnv || {}
 
-module.exports = {
-  entry: path.join(configPaths.appPath, 'index.tsx'),
-  output: {
-    filename: '[name].[contenthash].js',
-    chunkFilename: '[name].[contenthash].bundle.js',
-    path: path.resolve(configPaths.outputPath),
-    publicPath: '/',
-    clean: true,
-  },
-  cache: {
-    type: 'filesystem',
-    version: createWebpackHash({}), // TODO replace with ENV
-    cacheDirectory: configPaths.webpackCachePath,
-    store: 'pack',
-    buildDependencies: {
-      defaultWebpack: ['webpack/lib/'],
-      config: [__filename],
-      tsconfig: [configPaths.tsConfigPath],
+  const ENV = envFlags.ENV || 'development'
+
+  let env = {
+    ...parseEnvFile(`.env.${ENV}`),
+    ...envFlags,
+  }
+
+  logCurrentEnv(env)
+
+  return {
+    entry: path.join(configPaths.appPath, 'index.tsx'),
+    output: {
+      filename: '[name].[contenthash].js',
+      chunkFilename: '[name].[contenthash].bundle.js',
+      path: path.resolve(configPaths.outputPath),
+      publicPath: '/',
+      clean: true,
     },
-  },
-  target: ['browserslist'],
-  stats: 'errors-warnings',
-  resolve: {
-    extensions: ['.js', '.jsx', '.ts', '.tsx'],
-    alias: {
-      '@': configPaths.appPath,
+    cache: {
+      type: 'filesystem',
+      version: createWebpackHash(env),
+      cacheDirectory: configPaths.webpackCachePath,
+      store: 'pack',
+      buildDependencies: {
+        defaultWebpack: ['webpack/lib/'],
+        config: [__filename],
+        tsconfig: [configPaths.tsConfigPath],
+      },
     },
-  },
-  module: {
-    rules: [
-      {
-        test: /\.svg$/,
-        include: path.resolve(__dirname, configPaths.appPath),
-        use: ['@svgr/webpack'],
+    target: ['browserslist'],
+    stats: 'errors-warnings',
+    resolve: {
+      extensions: ['.js', '.jsx', '.ts', '.tsx'],
+      alias: {
+        '@': configPaths.appPath,
       },
-      {
-        test: /\.(png|jpg|jpeg|gif|woff|woff2|eot|ttf|otf)$/i,
-        type: 'asset/resource',
-        include: path.resolve(__dirname, configPaths.appPath),
-      },
-      {
-        test: /\.css$/i,
-        include: path.resolve(__dirname, configPaths.appPath),
-        use: ['style-loader', 'css-loader', 'postcss-loader'],
-      },
-    ],
-  },
-  plugins: [
-    new CopyWebpackPlugin({
-      patterns: [
+    },
+    module: {
+      rules: [
         {
-          from: 'public/**/*',
-          globOptions: {
-            dot: true,
-            gitignore: true,
-            ignore: ['index.html'],
-          },
+          test: /\.svg$/,
+          include: path.resolve(__dirname, configPaths.appPath),
+          use: ['@svgr/webpack'],
+        },
+        {
+          test: /\.(png|jpg|jpeg|gif|woff|woff2|eot|ttf|otf)$/i,
+          type: 'asset/resource',
+          include: path.resolve(__dirname, configPaths.appPath),
         },
       ],
-    }),
-    new HtmlWebpackPlugin({
-      template: path.join(configPaths.publicPath, 'index.html'),
-      scriptLoading: 'defer',
-      chunks: ['main'],
-      // minify: {
-      //   removeComments: true,
-      //   collapseWhitespace: true,
-      //   removeRedundantAttributes: true,
-      //   useShortDoctype: true,
-      //   removeEmptyAttributes: true,
-      //   removeStyleLinkTypeAttributes: true,
-      //   keepClosingSlash: true,
-      //   minifyJS: true,
-      //   minifyCSS: true,
-      //   minifyURLs: true,
-      // },
-    }),
-  ],
+    },
+    plugins: [
+      new CopyWebpackPlugin({
+        patterns: [
+          {
+            from: 'public/**/*',
+            globOptions: {
+              dot: true,
+              gitignore: true,
+              ignore: ['index.html'],
+            },
+          },
+        ],
+      }),
+      new webpack.EnvironmentPlugin(env),
+      new HtmlWebpackPlugin({
+        template: path.join(configPaths.publicPath, 'index.html'),
+        scriptLoading: 'defer',
+        chunks: ['main'],
+      }),
+    ],
+  }
 }
