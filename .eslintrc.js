@@ -20,9 +20,19 @@ module.exports = {
     ecmaVersion: 'latest',
     sourceType: 'module',
   },
+  overrides: [
+    {
+      files: ['**/__tests__/**/*.[jt]s?(x)', '**/?(*.)+(spec|test).[jt]s?(x)'],
+      plugins: ['jest'],
+      extends: ['plugin:jest/recommended'],
+    },
+  ],
   settings: {
     react: {
       version: 'detect',
+    },
+    jest: {
+      version: require('jest/package.json').version,
     },
     'import/resolver': {
       node: {
