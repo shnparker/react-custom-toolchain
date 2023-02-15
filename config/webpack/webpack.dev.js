@@ -13,7 +13,7 @@ module.exports = (...args) =>
     devtool: 'eval-source-map',
     devServer: {
       static: {
-        directory: '../public',
+        directory: 'public',
       },
       compress: true,
       port: 3000,
