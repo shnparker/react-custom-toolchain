@@ -35,8 +35,8 @@ module.exports = (...args) =>
         openAnalyzer: false,
       }),
       new MiniCssExtractPlugin({
-        filename: '[name].[contenthash].css',
-        chunkFilename: '[id].[contenthash].css',
+        filename: 'static/css/[name].[contenthash].css',
+        chunkFilename: 'static/css/[id].[contenthash].css',
       }),
     ],
     optimization: {

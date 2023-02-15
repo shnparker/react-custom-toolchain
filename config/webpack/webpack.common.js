@@ -42,6 +42,7 @@ module.exports = (webpackEnv) => {
   let env = {
     ...parseEnvFile(`.env.${ENV}`),
     ...envFlags,
+    PUBLIC_URL: '',
   }
 
   logCurrentEnv(env)
@@ -51,8 +52,8 @@ module.exports = (webpackEnv) => {
   return {
     entry: path.join(configPaths.appPath, 'index.tsx'),
     output: {
-      filename: '[name].[contenthash].js',
-      chunkFilename: '[name].[contenthash].bundle.js',
+      filename: 'static/js/[name].[contenthash].js',
+      chunkFilename: 'static/js/[name].[contenthash].bundle.js',
       path: path.resolve(configPaths.outputPath),
       publicPath: '/',
       clean: true,
@@ -94,12 +95,16 @@ module.exports = (webpackEnv) => {
       new CopyWebpackPlugin({
         patterns: [
           {
-            from: 'public/**/*',
-            globOptions: {
-              dot: true,
-              gitignore: true,
-              ignore: ['index.html'],
-            },
+            from: 'public/images',
+            to: `${configPaths.outputPath}/images`,
+          },
+          {
+            from: 'public/site.webmanifest',
+            to: `${configPaths.outputPath}/site.webmanifest`,
+          },
+          {
+            from: 'public/robots.txt',
+            to: `${configPaths.outputPath}/robots.txt`,
           },
         ],
       }),
