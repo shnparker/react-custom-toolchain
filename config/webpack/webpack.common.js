@@ -6,10 +6,9 @@ const configPaths = require('../configPaths')
 const fs = require('fs')
 const { createHash } = require('crypto')
 const dotenv = require('dotenv')
-
 const webpack = require('webpack')
 
-// Utility functions ----------------------------------------------------------
+// UTILITIES ------------------------------------------------------------------
 
 createWebpackHash = (env) => {
   const hash = createHash('md5')
@@ -32,9 +31,10 @@ function logCurrentEnv(env) {
   console.log('----------------------------------------')
 }
 
-// Webpack config --------------------------------------------------------------
+// EXPORTED CONFIG --------------------------------------------------------------
 
 module.exports = (webpackEnv) => {
+  // ENVIRONMENT VARIABLES ------------------------------------------------------
   const envFlags = webpackEnv || {}
 
   const ENV = envFlags.ENV || 'development'
@@ -45,6 +45,8 @@ module.exports = (webpackEnv) => {
   }
 
   logCurrentEnv(env)
+
+  // WEBPACK CONFIG ------------------------------------------------------------
 
   return {
     entry: path.join(configPaths.appPath, 'index.tsx'),
@@ -106,6 +108,9 @@ module.exports = (webpackEnv) => {
         template: path.join(configPaths.publicPath, 'index.html'),
         scriptLoading: 'defer',
         chunks: ['main'],
+        templateParameters: {
+          env,
+        },
       }),
     ],
   }

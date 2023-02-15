@@ -7,6 +7,7 @@ declare namespace NodeJS {
     readonly NODE_ENV: 'development' | 'production' | 'test'
 
     readonly TEST_VARIABLE: string
+    readonly ENV: string
     readonly PUBLIC_URL: string
   }
 }

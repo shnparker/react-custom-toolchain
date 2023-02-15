@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
-    "start": "webpack serve --open --config config/webpack/webpack.dev.js --env ENV=local",
+    "dev": "webpack serve --open --config config/webpack/webpack.dev.js --env ENV=local",
     "build": "webpack --config config/webpack/webpack.prod.js --env ENV=production",
     "lint": "eslint . --ext .ts,.tsx,.js,.jsx --fix",
     "format": "prettier --write . --loglevel warn",
