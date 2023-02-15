@@ -65,6 +65,7 @@ module.exports = {
           order: 'asc',
           caseInsensitive: true,
         },
+        'newlines-between': 'always',
       },
     ],
   },

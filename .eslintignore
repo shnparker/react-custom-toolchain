@@ -3,6 +3,7 @@ public
 .vscode
 coverage
 node_modules
+dist
 prettier.config.js
 babel.config.js
 postcss.config.js
