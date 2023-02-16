@@ -11,9 +11,8 @@
     "format:check": "prettier --check . --loglevel warn",
     "test": "jest",
     "test:watch": "jest --watchAll",
-    "test:coverage": "jest --coverage",
     "test:ci": "jest --ci --coverage",
-    "prebuild": "yarn run lint && yarn run format && yarn run test:coverage",
+    "prepush": "yarn test && yarn lint && yarn format",
     "prepare": "husky install"
   },
   "dependencies": {
