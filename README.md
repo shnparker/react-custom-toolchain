@@ -1,11 +1,3 @@
-[//]: # (Description: A React toolchain demo project)
-[//]: # (Keywords: react, toolchain, demo, create-react-app, webpack, babel, typescript, eslint, prettier, husky, lint-staged, tailwindcss)
-[//]: # (Author: [Shane Parker](https://github.com/shnparker)
-[//]: # (Date: 2023-02-03)
-[//]: # (Version: 1.0.0)
-[//]: # (License: MIT)
-
-
 # React Toolchain Demo
 
 This repository is a showcase of a React toolchain that can be used to create a React SPA from scratch.
@@ -58,6 +50,7 @@ These tools allowed for a great developer experience, and a production-ready pro
 - Type checking - [TypeScript](https://www.typescriptlang.org/)
 - Environment variables - [dotenv](https://github.com/motdotla/dotenv)
 - Pre-commit hooks - [Husky + lint-staged](https://prettier.io/docs/en/precommit.html)
+- Dependency updates - [Renovate](https://renovatebot.com/)
 
 ## Features
 
