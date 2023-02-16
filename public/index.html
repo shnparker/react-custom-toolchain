@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/images/icon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>React Custom Toolchain Demo</title>
+    <title>React Custom Toolchain</title>
 
     <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
@@ -12,8 +12,9 @@
     <link rel="manifest" href="/site.webmanifest">
   </head>
   <body>
-    <span><%= env.ENV %>! - environment printed from index.html template string</span>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
+
+    <span><%= env.ENV.toUpperCase() %> Environment injected from index.html template parameter!</span>
   </body>
 </html>

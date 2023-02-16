@@ -58,10 +58,13 @@ Some other features that are included in this project thanks to above tools are:
 
 - Hot module reloading
 - Code splitting & tree shaking
-- Path aliases for imports
+- Path aliases for imports (`@/utils`)
 - Source maps and bundle analyzer
 - Minification and optimization of assets (JS, CSS, images, fonts)
 - Public folder that is copied to the build folder, unprocessed by webpack.
+- Template parameters for index.html (`<%= env.TEST_VARIABLE %>`)
+- Inlining of small assets (images, fonts) under 10kb
+- Image conversion to webp (add `?as=webp` to the end of the image path processed by webpack)
 
 ## Getting Started
 
