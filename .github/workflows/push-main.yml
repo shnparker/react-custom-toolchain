@@ -7,7 +7,7 @@ defaults:
     shell: bash
 on:
   push:
-    branches: [ "main" ]
+    branches: ['main']
 jobs:
   verify:
     runs-on: ubuntu-latest
@@ -15,27 +15,27 @@ jobs:
       matrix:
         node-version: [18.x]
     steps:
-    - uses: actions/checkout@v3
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'npm'
+      - uses: actions/checkout@v3
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
 
-    - name: Install Yarn
-      run: npm install -g yarn
+      - name: Install Yarn
+        run: npm install -g yarn
 
-    - name: Install dependencies
-      run: yarn install --frozen-lockfile --ignore-engines
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile --ignore-engines
 
-    - name: Check code quality
-      run: yarn run lint
+      - name: Check code quality
+        run: yarn run lint
 
-    - name: Check formatting
-      run: yarn run format:check
+      - name: Check formatting
+        run: yarn run format:check
 
-    - name: Run the tests
-      run: yarn run test:ci
+      - name: Run the tests
+        run: yarn run test:ci
 
-    - name: Build the app
-      run: npm run build
+      - name: Build the app
+        run: npm run build

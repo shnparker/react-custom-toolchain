@@ -1,7 +1,7 @@
 # React Toolchain Demo
 
 This repository is a showcase of a React toolchain that can be used to create a React SPA from scratch.
-Ejecting from [Create React App](https://create-react-app.dev/) ends up being more work than starting from scratch, 
+Ejecting from [Create React App](https://create-react-app.dev/) ends up being more work than starting from scratch,
 so this project aims to provide a toolchain that is as easy to use as CRA, but with the flexibility to add and remove tools as needed.
 
 ## Table of Contents
@@ -21,7 +21,6 @@ so this project aims to provide a toolchain that is as easy to use as CRA, but w
 - [License](#license)
 - [Acknowledgments](#acknowledgments)
 - [Exclusions](#exclusions)
-
 
 ## Introduction
 
@@ -92,6 +91,7 @@ yarn install
 ```bash
 yarn dev
 ```
+
 This will start the development server on port 3000.
 
 ## Building for production
@@ -109,7 +109,6 @@ yarn test
 ```
 
 To learn more about testing, see the [Testing](#testing) section.
-
 
 You can also run the tests in watch mode:
 
