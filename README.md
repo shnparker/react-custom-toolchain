@@ -20,6 +20,7 @@ so this project aims to provide a toolchain that is as easy to use as CRA, but w
 - [Authors](#authors)
 - [License](#license)
 - [Acknowledgments](#acknowledgments)
+- [Exclusions](#exclusions)
 
 
 ## Introduction
@@ -155,3 +156,16 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## Acknowledgments
 
 - [Create React App](https://create-react-app.dev/)
+
+## Exclusions
+
+The following features are not included in this demo project since they are not required for a basic React project:
+
+- Progressive Web App (PWA) Support
+- Offline Support with a Service Worker
+- CSS Modules
+- Sass / Less / Stylus
+- CSS-in-JS
+- Web Workers
+- Server-side rendering
+- i18n
