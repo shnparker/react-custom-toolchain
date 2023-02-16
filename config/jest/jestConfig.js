@@ -14,6 +14,9 @@ module.exports = {
     '[/\\\\]node_modules[/\\\\].+\\.(js|jsx|mjs|cjs|ts|tsx)$',
     '^.+\\.module\\.(css|sass|scss)$',
   ],
+  moduleNameMapper: {
+    '^@/(.*)$': '<rootDir>/src/$1',
+  },
   modulePaths: [],
   resetMocks: true,
   coverageReporters: ['json', 'lcov', 'text', 'cobertura'],

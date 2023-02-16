@@ -1,4 +1,4 @@
-import test from './test'
+import test from '@/utils/test'
 
 describe('test', () => {
   it('should return test', () => {

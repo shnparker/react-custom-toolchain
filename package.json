@@ -8,8 +8,9 @@
     "lint": "eslint . --ext .ts,.tsx,.js,.jsx --fix",
     "format": "prettier --write . --loglevel warn",
     "test": "jest",
-    "test:watch": "jest --watch",
+    "test:watch": "jest --watchAll",
     "test:coverage": "jest --coverage",
+    "prebuild": "yarn run lint && yarn run format && yarn run test:coverage",
     "prepare": "husky install"
   },
   "dependencies": {
