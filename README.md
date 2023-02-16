@@ -16,6 +16,7 @@ so this project aims to provide a toolchain that is as easy to use as CRA, but w
 
 - [Introduction](#introduction)
 - [Built With](#built-with)
+- [Features](#features)
 - [Getting Started](#getting-started)
   - [Prerequisites](#prerequisites)
   - [Installing](#installing)
