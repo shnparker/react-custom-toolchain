@@ -1,9 +1,21 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
-import image from '@/assets/cover_banner.png'
 import test from '@/utils/test'
 
 function App() {
+  const [image, setImage] = useState(<></>)
+
+  useEffect(() => {
+    import('@/assets/cover_banner.png?as=webp')
+      .then((image) => {
+        setImage(<img src={image.default} alt="" loading="lazy" />)
+        return
+      })
+      .catch((error) => {
+        console.error(error)
+      })
+  })
+
   return (
     <>
       <div className="text-2xl text-blue-500">Custom React Toolchain</div>
@@ -14,7 +26,7 @@ function App() {
       <img src={process.env.PUBLIC_URL + '/images/cover_banner.png'} alt="" />
 
       <p>Import from src folder</p>
-      <img src={image} alt="" />
+      {image}
     </>
   )
 }

@@ -86,8 +86,16 @@ module.exports = (webpackEnv) => {
         },
         {
           test: /\.(png|jpg|jpeg|gif|woff|woff2|eot|ttf|otf)$/i,
-          type: 'asset/resource',
+          type: 'asset',
           include: path.resolve(__dirname, configPaths.appPath),
+          parser: {
+            dataUrlCondition: {
+              maxSize: 10 * 1024, // inline anything under 10kb
+            },
+          },
+          generator: {
+            filename: 'static/media/[name].[contenthash].[ext]',
+          },
         },
       ],
     },

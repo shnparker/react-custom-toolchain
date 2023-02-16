@@ -6,6 +6,7 @@ const configPaths = require('../configPaths')
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
+const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin')
 
 module.exports = (...args) =>
   merge(common(...args), {
@@ -51,6 +52,27 @@ module.exports = (...args) =>
           },
         },
       },
-      minimizer: [`...`, new CssMinimizerPlugin()],
+      minimizer: [
+        `...`,
+        new CssMinimizerPlugin(),
+        new ImageMinimizerPlugin({
+          minimizer: {
+            implementation: ImageMinimizerPlugin.sharpMinify,
+          },
+          generator: [
+            {
+              preset: 'webp',
+              implementation: ImageMinimizerPlugin.sharpGenerate,
+              options: {
+                encodeOptions: {
+                  webp: {
+                    quality: 90,
+                  },
+                },
+              },
+            },
+          ],
+        }),
+      ],
     },
   })

@@ -21,22 +21,26 @@ _Note: Technically speaking it is a transpiler in the case of TypeScript and TSX
 The toolchain is a set of tools that are used to build the project. The toolchain is responsible for compiling the code, bundling the code, and running the code. The toolchain is also responsible for running tests, linting, and formatting the code.
 Further configuration is required to get the project to a point where it can be deployed to production and provide a good developer experience. This includes:
 
-- ✅ A running web server for development
-- ✅ Separate development and production build pipelines
-- ✅ Hot reloading
-- ✅ Code splitting
-- ✅ Production Minification and Optimization
-- ✅ Handling CSS and other assets such as images
-- ✅ TypeScript
-- ✅ Jest / Testing Library configured
-- ✅ Environment variables
-- ✅ PostCSS + TailwindCSS
-- ✅ Custom path aliases
-- ❌ A public folder for static assets - work still in progress
+- ✅ A package manager (yarn)
+- ✅ A compiler (babel)
+- ✅ A code bundler (webpack)
+- ✅ A development server (webpack-dev-server)
+- ✅ A production build, optimized for performance and size (webpack production config)
+- ✅ A test runner (jest)
+- ✅ A code formatter, linter and quality checker (eslint/prettier)
+- ✅ A CSS preprocessor (postcss)
+- ✅ Hot reloading (webpack-dev-server)
+- ✅ Code splitting (webpack + dynamic imports)
+- ✅ Various types of asset handling (webpack plugins for images, fonts, etc)
+- ✅ TypeScript support (babel + typescript)
+- ✅ Environment variables (dotenv)
+- ✅ Custom path aliases (webpack)
+- ✅ Build time image optimization (s)
+- ✅ A public folder for static assets (copy-webpack-plugin)
 
 ## What is excluded?
 
-The following features are not included in this demo project:
+The following features are not included in this demo project since few people require it:
 
 - ❌ Progressive Web App (PWA) Support
 - ❌ Offline Support with a Service Worker
