@@ -32,7 +32,7 @@ module.exports = (...args) =>
     plugins: [
       new BundleAnalyzerPlugin({
         analyzerMode: 'static',
-        reportFilename: path.resolve('dist', 'reports', 'bundle-report.html'),
+        reportFilename: path.resolve('out', 'reports', 'bundle-report.html'),
         openAnalyzer: false,
       }),
       new MiniCssExtractPlugin({
