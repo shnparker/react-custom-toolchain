@@ -2,6 +2,7 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": ["config:base", "group:allNonMajor", "schedule:earlyMondays", ":pinAllExceptPeerDependencies"],
   "timezone": "Africa/Johannesburg",
+  "automerge": false,
   "npm": {
     "stabilityDays": 3,
     "enabled": true
@@ -10,26 +11,16 @@
   "vulnerabilityAlerts": {
     "labels": ["security"]
   },
-  "assignees": [
-    "shnparker"
-  ],
-  "reviewers": [
-    "shnparker"
-  ],
+  "assignees": ["shnparker"],
+  "reviewers": ["shnparker"],
   "packageRules": [
     {
       "automerge": true,
-      "extends": [
-        "packages:linters"
-      ]
+      "extends": ["packages:linters"]
     },
     {
-      "matchManagers": [
-        "npm"
-      ],
-      "matchPackageNames": [
-        "@types/node"
-      ],
+      "matchManagers": ["npm"],
+      "matchPackageNames": ["@types/node"],
       "versioning": "node"
     }
   ]
