@@ -9,6 +9,9 @@ on:
 jobs:
   verify:
     runs-on: ubuntu-latest
+    concurrency:
+      group: ci-${{ github.ref_name }}-verify
+      cancel-in-progress: true
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -30,6 +33,9 @@ jobs:
       pull-requests: write
       contents: write
     runs-on: ubuntu-latest
+    concurrency:
+      group: ci-${{ github.ref_name }}-test
+      cancel-in-progress: true
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -48,6 +54,9 @@ jobs:
 
   build:
     runs-on: ubuntu-latest
+    concurrency:
+      group: ci-${{ github.ref_name }}-build
+      cancel-in-progress: true
     steps:
       - name: Checkout
         uses: actions/checkout@v3
