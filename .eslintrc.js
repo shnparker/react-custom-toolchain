@@ -53,8 +53,12 @@ module.exports = {
     'import/order': [
       'error',
       {
-        groups: ['builtin', 'external', 'internal', 'parent', 'sibling', 'index'],
+        groups: [['external', 'builtin'], 'internal', ['sibling', 'parent'], 'index', 'type'],
         pathGroups: [
+          {
+            pattern: '@/types',
+            group: 'type',
+          },
           {
             pattern: '@/**',
             group: 'internal',
