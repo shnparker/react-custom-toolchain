@@ -15,6 +15,8 @@
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
 
-    <span><%= env.ENV.toUpperCase() %> Environment injected from index.html template parameter!</span>
+    <div class="flex items-center text-center">
+      <p class="bg-gray-50 text-gray-600 w-full mx-auto pb-3">Surprise! Here's an environment variable from the index.html folder using template parameters! <%= env.TEST_VARIABLE %></p>
+    </div>
   </body>
 </html>

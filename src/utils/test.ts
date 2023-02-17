@@ -1,3 +1,3 @@
-export default function test() {
-  return 'test'
+export default function pathAliasTest() {
+  return 'path aliases'
 }

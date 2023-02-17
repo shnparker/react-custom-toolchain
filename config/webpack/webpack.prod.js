@@ -61,7 +61,7 @@ module.exports = (...args) =>
           },
           generator: [
             {
-              preset: 'webp',
+              type: 'asset',
               implementation: ImageMinimizerPlugin.sharpGenerate,
               options: {
                 encodeOptions: {
