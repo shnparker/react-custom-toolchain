@@ -1,7 +1,7 @@
-name: push-main
+name: pull-request
 
 on:
-  pull_request_target:
+  pull_request:
     branches:
       - main
 
@@ -24,6 +24,10 @@ jobs:
         run: yarn run format:check
 
   test:
+    permissions:
+      checks: write
+      pull-requests: write
+      contents: write
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
