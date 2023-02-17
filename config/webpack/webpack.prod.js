@@ -43,11 +43,17 @@ module.exports = (...args) =>
     optimization: {
       moduleIds: 'deterministic',
       runtimeChunk: 'single',
+      minimize: true,
       splitChunks: {
         cacheGroups: {
+          react: {
+            test: /[\\/]node_modules[\\/](react|react-dom)[\\/]/,
+            name: 'react',
+            chunks: 'all',
+          },
           vendor: {
-            test: /[\\/]node_modules[\\/]/,
-            name: 'vendors',
+            test: /[\\/]node_modules[\\/](?!react|react-dom)[\\/]/,
+            name: 'vendor',
             chunks: 'all',
           },
         },
@@ -61,7 +67,6 @@ module.exports = (...args) =>
           },
           generator: [
             {
-              type: 'asset',
               preset: 'webp',
               implementation: ImageMinimizerPlugin.sharpGenerate,
               options: {
