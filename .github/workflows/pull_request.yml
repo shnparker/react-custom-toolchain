@@ -1,7 +1,7 @@
 name: push-main
 
 on:
-  pull_request:
+  pull_request_target:
     branches:
       - main
 
@@ -26,7 +26,10 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - name: setup
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup environment
         uses: ./.github/actions/setup/
 
       - name: Test and report coverage

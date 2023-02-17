@@ -10,7 +10,10 @@ jobs:
   verify:
     runs-on: ubuntu-latest
     steps:
-      - name: setup
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup environment
         uses: ./.github/actions/setup/
 
       - name: Check code quality
@@ -22,6 +25,10 @@ jobs:
         run: yarn run format:check
 
   test:
+    permissions:
+      checks: write
+      pull-requests: write
+      contents: write
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -30,15 +37,22 @@ jobs:
       - name: Setup environment
         uses: ./.github/actions/setup/
 
+      - name: Find current PR number
+        uses: jwalton/gh-find-current-pr@v1
+
       - name: Test and report coverage
         uses: ArtiomTr/jest-coverage-report-action@v2
         with:
           package-manager: yarn
+          prnumber: ${{ steps.findPr.outputs.number }}
 
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: setup
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup environment
         uses: ./.github/actions/setup/
 
       - name: Build the app
