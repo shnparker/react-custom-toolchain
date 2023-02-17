@@ -1,9 +1,5 @@
 name: push-main
 
-defaults:
-  run:
-    shell: bash
-
 on:
   workflow_dispatch:
   push:
@@ -21,9 +17,11 @@ jobs:
         uses: ./.github/actions/setup/
 
       - name: Check code quality
+        shell: bash
         run: yarn run lint:check
 
       - name: Check formatting
+        shell: bash
         run: yarn run format:check
 
   test:
@@ -50,4 +48,5 @@ jobs:
         uses: ./.github/actions/setup/
 
       - name: Build the app
+        shell: bash
         run: yarn run build
