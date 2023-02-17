@@ -51,6 +51,7 @@ These tools allowed for a great developer experience, and a production-ready pro
 - Environment variables - [dotenv](https://github.com/motdotla/dotenv)
 - Pre-commit hooks - [Husky + lint-staged](https://prettier.io/docs/en/precommit.html)
 - Dependency updates - [Renovate](https://renovatebot.com/)
+- A CI/CD pipeline - [GitHub Actions](https://github.com/features/actions)
 
 ## Features
 
