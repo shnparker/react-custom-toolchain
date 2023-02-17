@@ -2,15 +2,16 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
     "config:base",
+    ":assignAndReview(@shnparker)",
+    ":automergeMinor",
+    ":automergeRequireAllStatusChecks",
+    ":automergeTypes",
     "group:allNonMajor",
+    "npm:unpublishSafe",
     "schedule:earlyMondays",
     ":pinAllExceptPeerDependencies",
-    "workarounds:typesNodeVersioning",
-    "npm:unpublishSafe",
-    ":assignAndReview(@shnparker)",
-    ":automergeLinters"
+    "workarounds:typesNodeVersioning"
   ],
   "timezone": "Africa/Johannesburg",
-  "automerge": false,
   "postUpdateOptions": ["yarnDedupeFewer"]
 }
