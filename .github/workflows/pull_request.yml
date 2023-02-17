@@ -9,7 +9,7 @@ jobs:
   verify:
     runs-on: ubuntu-latest
     concurrency:
-      group: ci-${{ github.ref_name }}-lint
+      group: ci-${{ github.ref_name }}-verify
       cancel-in-progress: true
     steps:
       - name: Checkout
@@ -33,7 +33,7 @@ jobs:
       contents: write
     runs-on: ubuntu-latest
     concurrency:
-      group: ci-${{ github.ref_name }}-lint
+      group: ci-${{ github.ref_name }}-test
       cancel-in-progress: true
     steps:
       - name: Checkout
