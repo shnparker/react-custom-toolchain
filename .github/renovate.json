@@ -1,27 +1,16 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["config:base", "group:allNonMajor", "schedule:earlyMondays", ":pinAllExceptPeerDependencies"],
+  "extends": [
+    "config:base",
+    "group:allNonMajor",
+    "schedule:earlyMondays",
+    ":pinAllExceptPeerDependencies",
+    "workarounds:typesNodeVersioning",
+    "npm:unpublishSafe",
+    ":assignAndReview(@shnparker)",
+    ":automergeLinters"
+  ],
   "timezone": "Africa/Johannesburg",
   "automerge": false,
-  "npm": {
-    "stabilityDays": 3,
-    "enabled": true
-  },
-  "labels": ["renovate"],
-  "vulnerabilityAlerts": {
-    "labels": ["security"]
-  },
-  "assignees": ["shnparker"],
-  "reviewers": ["shnparker"],
-  "packageRules": [
-    {
-      "automerge": true,
-      "extends": ["packages:linters"]
-    },
-    {
-      "matchManagers": ["npm"],
-      "matchPackageNames": ["@types/node"],
-      "versioning": "node"
-    }
-  ]
+  "postUpdateOptions": ["yarnDedupeFewer"]
 }
