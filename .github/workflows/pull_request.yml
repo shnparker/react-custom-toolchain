@@ -1,9 +1,5 @@
 name: push-main
 
-defaults:
-  run:
-    shell: bash
-
 on:
   pull_request:
     branches:
@@ -20,9 +16,11 @@ jobs:
         uses: ./.github/actions/setup/
 
       - name: Check code quality
+        shell: bash
         run: yarn run lint:check
 
       - name: Check formatting
+        shell: bash
         run: yarn run format:check
 
   test:
