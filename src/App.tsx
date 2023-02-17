@@ -6,7 +6,7 @@ function App() {
   const [image, setImage] = useState(<></>)
 
   useEffect(() => {
-    import('@/assets/cover_banner.png?as=webp')
+    import('@/assets/images/cover_banner.png?as=webp')
       .then((image) => {
         setImage(
           <img

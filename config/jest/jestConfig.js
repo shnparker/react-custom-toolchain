@@ -14,8 +14,15 @@ module.exports = {
     '[/\\\\]node_modules[/\\\\].+\\.(js|jsx|mjs|cjs|ts|tsx)$',
     '^.+\\.module\\.(css|sass|scss)$',
   ],
+  moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
+  moduleDirectories: ['node_modules'],
   moduleNameMapper: {
-    '^@/(.*)$': '<rootDir>/src/$1',
+    '^@/(?!assets/)(.*)$': '<rootDir>/src/$1',
+    // handle @/assets alias imports, which may contain query params like @/assets/images/logo.png?as=something but not @/assets/images/logo.png
+    '^@/assets/(?!images/)(.*)$': '<rootDir>/src/assets/images/$1',
+    '\\.(jpg|ico|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)(\\?.*)?$':
+      '<rootDir>/config/jest/fileMock.js',
+    '\\.(css)$': '<rootDir>/config/jest/styleMock.js',
   },
   modulePaths: [],
   resetMocks: true,
