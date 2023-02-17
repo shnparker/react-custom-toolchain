@@ -27,6 +27,6 @@ jobs:
         uses: ./.github/actions/setup/
 
       - name: test and report coverage
-      - uses: ArtiomTr/jest-coverage-report-action@v2
+        uses: ArtiomTr/jest-coverage-report-action@v2
         with:
           package-manager: yarn
