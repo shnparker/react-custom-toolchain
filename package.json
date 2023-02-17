@@ -2,6 +2,16 @@
   "name": "react-custom-toolchain-demo",
   "version": "1.0.0",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:shnparker/react-custom-toolchain.git"
+  },
+  "author": {
+    "name": "Shane Parker",
+    "email": "hey@shnparker.com",
+    "url": "https://shnparker.com",
+    "github": "shnparker"
+  },
   "scripts": {
     "dev": "webpack serve --open --config config/webpack/webpack.dev.js --env ENV=local",
     "build": "webpack --config config/webpack/webpack.prod.js --env ENV=production",
@@ -12,7 +22,7 @@
     "test": "jest",
     "test:watch": "jest --watchAll",
     "test:ci": "jest --ci --coverage",
-    "prepush": "yarn test && yarn lint && yarn format",
+    "prepush": "yarn lint && yarn format && yarn test",
     "prepare": "husky install"
   },
   "dependencies": {
