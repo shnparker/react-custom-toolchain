@@ -9,9 +9,6 @@ on:
 jobs:
   verify:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [18.x]
     steps:
       - name: setup
         uses: ./.github/actions/setup/
@@ -26,9 +23,6 @@ jobs:
 
   test:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [18.x]
     steps:
       - name: setup
         uses: ./.github/actions/setup/
@@ -40,9 +34,6 @@ jobs:
 
   build:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [18.x]
     steps:
       - name: setup
         uses: ./.github/actions/setup/
