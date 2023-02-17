@@ -6,9 +6,16 @@ function App() {
   const [image, setImage] = useState(<></>)
 
   useEffect(() => {
-    import('@/assets/cover_banner.png?as=webp')
+    import('@/assets/images/cover_banner.png?as=webp')
       .then((image) => {
-        setImage(<img src={image.default} alt="" loading="lazy" className="h-full w-full object-cover object-center" />)
+        setImage(
+          <img
+            src={image.default}
+            alt="Processed asset"
+            loading="lazy"
+            className="h-full w-full object-cover object-center"
+          />
+        )
         return
       })
       .catch((error) => {
@@ -43,7 +50,7 @@ function App() {
                 <div className="aspect-w-3 aspect-h-2 w-full overflow-hidden rounded-lg">
                   <img
                     src={process.env.PUBLIC_URL + '/images/cover_banner.png'}
-                    alt=""
+                    alt="Unprocessed asset"
                     className="h-full w-full object-cover object-center"
                   />
                 </div>

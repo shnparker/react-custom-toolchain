@@ -52,6 +52,7 @@
     "autoprefixer": "10.4.13",
     "babel-jest": "29.4.2",
     "babel-loader": "9.1.2",
+    "babel-plugin-dynamic-import-node": "^2.3.3",
     "copy-webpack-plugin": "11.0.0",
     "css-loader": "6.7.3",
     "css-minimizer-webpack-plugin": "4.2.2",
