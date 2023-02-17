@@ -24,10 +24,13 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - name: setup
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup environment
         uses: ./.github/actions/setup/
 
-      - name: test and report coverage
+      - name: Test and report coverage
         uses: ArtiomTr/jest-coverage-report-action@v2
         with:
           package-manager: yarn
