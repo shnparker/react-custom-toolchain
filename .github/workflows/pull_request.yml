@@ -5,8 +5,7 @@ defaults:
     shell: bash
 
 on:
-  workflow_dispatch:
-  push:
+  pull_request:
     branches:
       - main
 
@@ -39,15 +38,3 @@ jobs:
       - uses: ArtiomTr/jest-coverage-report-action@v2
         with:
           package-manager: yarn
-
-  build:
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [18.x]
-    steps:
-      - name: setup
-        uses: ./.github/actions/setup/
-
-      - name: Build the app
-        run: yarn run build

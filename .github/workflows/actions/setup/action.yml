@@ -1,0 +1,41 @@
+name: 'Setup Link in Bio renderer'
+description: 'initialize environment and install dependencies for other actions'
+
+inputs:
+  YARN_CACHE_KEY:
+    description: 'yarn cache key'
+    default: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
+  YARN_CACHE_RESTORE_KEY:
+    description: 'yarn cache restore key'
+    default: ${{ runner.os }}-yarn-
+
+runs:
+  using: 'composite'
+  steps:
+    - uses: actions/checkout@v3
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+
+    - name: install yarn
+      shell: bash
+      run: npm install --location=global yarn
+
+    - name: get yarn cache directory path
+      id: yarn-cache-dir-path
+      shell: bash
+      run: echo "dir=$(yarn cache dir)" >> $GITHUB_OUTPUT
+
+    - name: restore yarn cache
+      uses: actions/cache@9b0c1fce7a93df8e3bb8926b0d6e9d89e92f20a7 # v3.0.11
+      with:
+        path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+        key: ${{ inputs.YARN_CACHE_KEY }}
+        restore-keys: ${{ inputs.YARN_CACHE_RESTORE_KEY }}
+
+    - name: install dependencies
+      shell: bash
+      run: yarn install --frozen-lockfile  --ignore-engines
+
