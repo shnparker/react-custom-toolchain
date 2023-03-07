@@ -26,7 +26,7 @@ jobs:
         shell: bash
         run: yarn run format:check
 
-  test:
+  unit-test:
     permissions:
       checks: write
       pull-requests: write
@@ -42,7 +42,11 @@ jobs:
       - name: Setup environment
         uses: ./.github/actions/setup/
 
+      - name: Find current PR number
+        uses: jwalton/gh-find-current-pr@v1
+
       - name: Test and report coverage
         uses: ArtiomTr/jest-coverage-report-action@v2
         with:
           package-manager: yarn
+          prnumber: ${{ steps.findPr.outputs.number }}
