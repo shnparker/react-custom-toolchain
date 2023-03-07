@@ -1,0 +1,13 @@
+name: 'Verify code quality'
+description: 'Run linting and formatting checks'
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Check code quality
+      shell: bash
+      run: yarn run lint:check
+
+    - name: Check formatting
+      shell: bash
+      run: yarn run format:check

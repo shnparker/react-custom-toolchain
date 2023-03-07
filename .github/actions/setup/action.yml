@@ -10,6 +10,10 @@ runs:
         node-version: '18.x'
         cache: 'yarn'
 
-    - name: install dependencies
+    - name: Install yarn
+      shell: bash
+      run: npm install yarn -g
+
+    - name: Install dependencies
       shell: bash
       run: yarn install --frozen-lockfile  --ignore-engines

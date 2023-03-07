@@ -2,7 +2,6 @@
 
 ![push-main](https://github.com/shnparker/react-custom-toolchain/workflows/push-main/badge.svg)
 
-
 This repository is a showcase of a React toolchain that can be used to create a React SPA from scratch.
 Ejecting from [Create React App](https://create-react-app.dev/) ends up being more work than starting from scratch,
 so this project aims to provide a toolchain that is as easy to use as CRA, but with the flexibility to add and remove tools as needed.
