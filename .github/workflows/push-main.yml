@@ -68,9 +68,3 @@ jobs:
 
       - name: Build project
         run: yarn run build
-
-      - name: Upload build artifacts
-        uses: actions/upload-artifact@v3
-        with:
-          name: build
-          path: dist
