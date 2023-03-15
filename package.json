@@ -13,8 +13,8 @@
     "github": "shnparker"
   },
   "scripts": {
-    "dev": "webpack serve --open --config config/webpack/webpack.dev.js --env ENV=local",
-    "build": "webpack --config config/webpack/webpack.prod.js --env ENV=production",
+    "dev": "webpack serve --open --config config/webpack/webpack.dev.cjs --env ENV=local",
+    "build": "webpack --config config/webpack/webpack.prod.cjs --env ENV=production",
     "lint": "eslint . --ext .ts,.tsx,.js,.jsx --fix",
     "lint:check": "eslint . --ext .ts,.tsx,.js,.jsx",
     "format": "prettier --write . --loglevel warn",
@@ -22,8 +22,7 @@
     "test": "jest",
     "test:watch": "jest --watchAll",
     "test:ci": "jest --ci --coverage",
-    "prepush": "yarn lint && yarn format && yarn test",
-    "prepare": "husky install"
+    "prepare": "if [[ ! $NODE_ENV == \\\"production\\\" ]];then husky install; fi"
   },
   "dependencies": {
     "dotenv": "16.0.3",
