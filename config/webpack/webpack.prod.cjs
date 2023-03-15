@@ -1,17 +1,17 @@
-const { merge } = require('webpack-merge')
-const common = require('./webpack.common')
-const path = require('path')
-const configPaths = require('../configPaths')
+const { merge } = require("webpack-merge");
+const common = require("./webpack.common");
+const path = require("path");
+const configPaths = require("../configPaths");
 
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
-const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin')
+const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
+const ImageMinimizerPlugin = require("image-minimizer-webpack-plugin");
 
 module.exports = (...args) =>
   merge(common(...args), {
-    mode: 'production',
-    devtool: 'source-map',
+    mode: "production",
+    devtool: "source-map",
     bail: true,
     module: {
       rules: [
@@ -19,42 +19,42 @@ module.exports = (...args) =>
           test: /\.(js|jsx|ts|tsx)$/,
           include: path.resolve(__dirname, configPaths.appPath),
           use: {
-            loader: 'babel-loader',
+            loader: "babel-loader",
           },
         },
         {
           test: /\.css$/i,
           include: path.resolve(__dirname, configPaths.appPath),
-          use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader'],
+          use: [MiniCssExtractPlugin.loader, "css-loader", "postcss-loader"],
         },
       ],
     },
     plugins: [
       new BundleAnalyzerPlugin({
-        analyzerMode: 'static',
-        reportFilename: path.resolve('out', 'reports', 'bundle-report.html'),
+        analyzerMode: "static",
+        reportFilename: path.resolve("out", "reports", "bundle-report.html"),
         openAnalyzer: false,
       }),
       new MiniCssExtractPlugin({
-        filename: 'static/css/[name].[contenthash].css',
-        chunkFilename: 'static/css/[id].[contenthash].css',
+        filename: "static/css/[name].[contenthash].css",
+        chunkFilename: "static/css/[id].[contenthash].css",
       }),
     ],
     optimization: {
-      moduleIds: 'deterministic',
-      runtimeChunk: 'single',
+      moduleIds: "deterministic",
+      runtimeChunk: "single",
       minimize: true,
       splitChunks: {
         cacheGroups: {
           react: {
             test: /[\\/]node_modules[\\/](react|react-dom)[\\/]/,
-            name: 'react',
-            chunks: 'all',
+            name: "react",
+            chunks: "all",
           },
           vendor: {
             test: /[\\/]node_modules[\\/](?!react|react-dom)[\\/]/,
-            name: 'vendor',
-            chunks: 'all',
+            name: "vendor",
+            chunks: "all",
           },
         },
       },
@@ -67,7 +67,7 @@ module.exports = (...args) =>
           },
           generator: [
             {
-              preset: 'webp',
+              preset: "webp",
               implementation: ImageMinimizerPlugin.sharpGenerate,
               options: {
                 encodeOptions: {
@@ -81,4 +81,4 @@ module.exports = (...args) =>
         }),
       ],
     },
-  })
+  });

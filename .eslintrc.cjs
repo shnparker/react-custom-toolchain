@@ -5,72 +5,72 @@ module.exports = {
     jest: true,
   },
   extends: [
-    'eslint:recommended',
-    'plugin:react/recommended',
-    'plugin:import/recommended',
-    'plugin:import/typescript',
-    'plugin:jsx-a11y/recommended',
-    'plugin:promise/recommended',
-    'plugin:@typescript-eslint/recommended',
-    'eslint-config-prettier',
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:import/recommended",
+    "plugin:import/typescript",
+    "plugin:jsx-a11y/recommended",
+    "plugin:promise/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "eslint-config-prettier",
   ],
-  parser: '@typescript-eslint/parser',
+  parser: "@typescript-eslint/parser",
   parserOptions: {
-    project: './tsconfig.json',
-    ecmaVersion: 'latest',
-    sourceType: 'module',
+    project: "./tsconfig.json",
+    ecmaVersion: "latest",
+    sourceType: "module",
   },
   overrides: [
     {
-      files: ['**/__tests__/**/*.[jt]s?(x)', '**/?(*.)+(spec|test).[jt]s?(x)'],
-      plugins: ['jest'],
-      extends: ['plugin:jest/recommended'],
+      files: ["**/__tests__/**/*.[jt]s?(x)", "**/?(*.)+(spec|test).[jt]s?(x)"],
+      plugins: ["jest"],
+      extends: ["plugin:jest/recommended"],
     },
   ],
   settings: {
     react: {
-      version: 'detect',
+      version: "detect",
     },
     jest: {
-      version: require('jest/package.json').version,
+      version: require("jest/package.json").version,
     },
-    'import/resolver': {
+    "import/resolver": {
       node: {
-        paths: ['src'],
-        extensions: ['.js', '.jsx', '.ts', '.tsx'],
+        paths: ["src"],
+        extensions: [".js", ".jsx", ".ts", ".tsx"],
       },
       alias: {
-        extensions: ['.js', '.jsx', '.ts', '.tsx'],
-        map: [['@/*', 'src/*']],
+        extensions: [".js", ".jsx", ".ts", ".tsx"],
+        map: [["@/*", "src/*"]],
       },
       typescript: true,
     },
   },
   rules: {
-    'react/react-in-jsx-scope': 'off',
-    'react/prop-types': 'off',
-    '@typescript-eslint/triple-slash-reference': 'off',
-    'import/order': [
-      'error',
+    "react/react-in-jsx-scope": "off",
+    "react/prop-types": "off",
+    "@typescript-eslint/triple-slash-reference": "off",
+    "import/order": [
+      "error",
       {
-        groups: [['external', 'builtin'], 'internal', ['sibling', 'parent'], 'index', 'type'],
+        groups: [["external", "builtin"], "internal", ["sibling", "parent"], "index", "type"],
         pathGroups: [
           {
-            pattern: '@/types',
-            group: 'type',
+            pattern: "@/types",
+            group: "type",
           },
           {
-            pattern: '@/**',
-            group: 'internal',
+            pattern: "@/**",
+            group: "internal",
           },
         ],
-        pathGroupsExcludedImportTypes: ['internal'],
+        pathGroupsExcludedImportTypes: ["internal"],
         alphabetize: {
-          order: 'asc',
+          order: "asc",
           caseInsensitive: true,
         },
-        'newlines-between': 'always',
+        "newlines-between": "always",
       },
     ],
   },
-}
+};
