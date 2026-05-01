@@ -25,7 +25,7 @@
     "prepare": "if [[ ! $NODE_ENV == \\\"production\\\" ]];then husky install; fi"
   },
   "dependencies": {
-    "dotenv": "16.0.3",
+    "dotenv": "17.4.2",
     "react": "18.2.0",
     "react-dom": "18.2.0"
   },
