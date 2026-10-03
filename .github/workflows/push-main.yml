@@ -13,7 +13,7 @@ jobs:
       cancel-in-progress: true
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v3.7.0
 
       - name: Setup environment
         uses: ./.github/actions/setup/
@@ -37,16 +37,16 @@ jobs:
       cancel-in-progress: true
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v3.7.0
 
       - name: Setup environment
         uses: ./.github/actions/setup/
 
       - name: Find current PR number
-        uses: jwalton/gh-find-current-pr@v1
+        uses: jwalton/gh-find-current-pr@v1.3.5
 
       - name: Test and report coverage
-        uses: ArtiomTr/jest-coverage-report-action@v2
+        uses: ArtiomTr/jest-coverage-report-action@v2.3.1
         with:
           package-manager: yarn
           prnumber: ${{ steps.findPr.outputs.number }}
@@ -61,7 +61,7 @@ jobs:
       cancel-in-progress: true
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v3.7.0
 
       - name: Setup environment
         uses: ./.github/actions/setup/
